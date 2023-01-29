@@ -3,17 +3,11 @@ import fetch from 'node-fetch';
 const url = 'https://www.roh.org.uk/api/event-details?slug=turandot-by-andrei-serban'
 
 fetch(url)
-  .then(response => {
-    response.json().then(data => {
-      console.log('keys', Object.keys(data))
-      console.log('data', data.data)
-      console.log('included', data.included.length)
-      // console.log('data', data.data)
-      // console.log('included', data.included.slice(0, 5))
-      const types = []
+  .then(response => response.json())
+  .then(data => {
+    const types = []
 
       for (const inc of data.included) {
-        // console.log('inc', inc.type)
         if (!types.map(t => t.type).includes(inc.type)) {
           types.push(inc)
         }
@@ -36,4 +30,3 @@ fetch(url)
 
       console.log({ title, date, shortDescription, creatives })
     })
-  })
