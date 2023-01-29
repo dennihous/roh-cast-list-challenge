@@ -1,4 +1,3 @@
-import fs from 'fs'
 import fetch from 'node-fetch';
 
 const url = 'https://www.roh.org.uk/api/event-details?slug=turandot-by-andrei-serban'
@@ -9,11 +8,32 @@ fetch(url)
       console.log('keys', Object.keys(data))
       console.log('data', data.data)
       console.log('included', data.included.length)
-      fs.writeFileSync('./data.json', JSON.stringify(data, null, 2))
-      // console.log('keys', Object.keys(data))
-      // console.log('data', JSON.stringify(data.data, null, 2))
-      // console.log('included', data.included[0])
+      // console.log('data', data.data)
+      // console.log('included', data.included.slice(0, 5))
+      const types = []
+
+      for (const inc of data.included) {
+        // console.log('inc', inc.type)
+        if (!types.map(t => t.type).includes(inc.type)) {
+          types.push(inc)
+        }
+      }
+
+      console.log('types', types)
 
       const title = data.data.attributes.title
+      const activity = data.included.find(i => i.type === 'activities')
+      const dateString = activity.attributes.date
+      const dateObject = new Date(dateString)
+      const date = [
+        dateObject.getDate(),
+        dateObject.getMonth() + 1,
+        dateObject.getFullYear()
+      ].join('/')
+      const shortDescription = data.data.attributes.shortDescription
+      const creativeObjects = data.included.filter(i => i.type === 'creatives')
+      const creatives = creativeObjects.map(c => `${c.attributes.name} - ${c.attributes.role}`)
+
+      console.log({ title, date, shortDescription, creatives })
     })
   })
