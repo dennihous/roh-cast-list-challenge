@@ -16,7 +16,11 @@ export default {
             presets: ['@babel/preset-react']
           }
         }
-      }
+      },
+      {
+        test: /\.(sa|sc|c)ss$/, // styles files
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
     ]
   },
   output: {
