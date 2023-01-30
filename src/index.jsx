@@ -8,10 +8,19 @@ const App = () => {
   getData()
     .then(d => setData(d))
 
+  
+
   return (
     <div>
     <h1>{data.title ?? 'unknown'}</h1>
-    <div>Hello world</div>
+    <h3>{data.date ?? 'unknown'}</h3>
+    <h3>{data.shortDescription ?? 'unknown'}</h3>
+    <h1>Creatives</h1>
+    <h3>
+      {data.creatives}
+    </h3>
+    <h1>Cast</h1>
+    <h3>{data.cast}</h3>
     </div>
   )
 }

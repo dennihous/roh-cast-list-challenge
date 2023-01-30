@@ -14,7 +14,7 @@ export const getData = async () => {
     }
   }
 
-  // console.log('types', types)
+  console.log('types', types)
 
   const title = data.data.attributes.title
   const activity = data.included.find(i => i.type === 'activities')
@@ -25,14 +25,29 @@ export const getData = async () => {
     dateObject.getMonth() + 1,
     dateObject.getFullYear()
   ].join('/')
-  const shortDescription = data.data.attributes.shortDescription
+  const shortDescription = data.data.attributes.shortDescription.slice(3,-4)
   const creativeObjects = data.included.filter(i => i.type === 'creatives')
   const creatives = creativeObjects.map(c => `${c.attributes.name} - ${c.attributes.role}`)
+  const castObjects = data.included.filter(i => i.type === 'castRoles')
+  const cast = castObjects.map(c => `${c.attributes.name} - ${c.attributes.role}`)
+
+  // console.log(title,
+  //   date,
+  //   shortDescription,
+  //   creatives,
+  //   castObjects,
+  //   cast
+  //   )
 
   return {
     title,
     date,
     shortDescription,
-    creatives
+    creatives,
+    cast
   }
+
+  
 }
+
+getData()
