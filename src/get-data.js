@@ -3,8 +3,7 @@ const url = 'https://www.roh.org.uk/api/event-details?slug=turandot-by-andrei-se
 export const getData = async () => {
   const response = await fetch(url)
   const data = await response.json()
-  // console.log('data', data.data)
-  // console.log('included', data.included.slice(0, 5))
+  
   const types = []
 
   for (const inc of data.included) {
@@ -30,14 +29,6 @@ export const getData = async () => {
   const creatives = creativeObjects.map(c => `${c.attributes.name} - ${c.attributes.role}`)
   const castObjects = data.included.filter(i => i.type === 'castRoles')
   const cast = castObjects.map(c => `${c.attributes.name} - ${c.attributes.role}`)
-
-  // console.log(title,
-  //   date,
-  //   shortDescription,
-  //   creatives,
-  //   castObjects,
-  //   cast
-  //   )
 
   return {
     title,

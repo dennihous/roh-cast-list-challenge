@@ -13,10 +13,10 @@ const App = () => {
 
   return (
     <div className='index'>
-    <h1>{data.title ?? 'unknown'}</h1>
-    <h3>{data.date ?? 'unknown'}</h3>
-    <h3>{data.shortDescription ?? 'unknown'}</h3>
-    <h2>Creatives</h2>
+    <h1 className='title'>{data.title ?? 'unknown'}</h1>
+    <h4 className='subtitle'>Date: {data.date ?? 'unknown'}</h4>
+    <h4 className='subtitle'>{data.shortDescription ?? 'unknown'}</h4>
+    <h2 className='title'>Creatives</h2>
     {data.creatives && (
     <ul>
       {data.creatives.map(e => (
@@ -24,7 +24,7 @@ const App = () => {
       ))}
     </ul>
     )}
-    <h1>Cast</h1>
+    <h2 className='title'>Cast</h2>
     {data.cast && (
     <ul>
       {data.cast.map(e => (

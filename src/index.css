@@ -1,3 +1,17 @@
 .index{
-  margin-left: 100px;
+  margin-left: 75px;
+  margin-top: 75px;
+  font-family: "Gotham SSm A", "Gotham SSm B", Montserrat, sans-serif;
+}
+
+.title{
+  font-weight: 50;
+}
+
+.subtitle{
+  font-weight: 50;
+}
+
+ul {
+  padding-left: 15px;
 }
